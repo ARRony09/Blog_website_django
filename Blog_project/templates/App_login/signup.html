@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Sign Up{% endblock  %}
+
+
+
+{% block body %}
+
+{% if registered %}
+<div class="alert alert-success">
+Account Created Successfully. <a href="">Login here</a>
+</div>
+{% else %}
+<h3>Create an Account</h3>
+<form method="POST">{% csrf_token %}
+{{form|crispy}}
+<button type="submit" class="btn btn-success btn-md">Create Account</button>
+</form>
+<br>
+<p>Already have an account?<a href="{% url 'App_login:login' %}">Login</a></p>
+{% endif %}
+{% endblock %}

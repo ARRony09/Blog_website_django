@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{user}}{% endblock %}
+
+{% block body %}
+
+{% for blog in user.post_author.all %}
+<h3>{{blog.blog_title}}</h3>
+<h6>{{blog.publish_date}}</h6>
+
+<div class='row'>
+    
+    <div class='col-sm-4'>
+        <img src="/media/{{blog.blog_image}}" width='100%' %>
+    </div>
+    <div class='col-sm-8'>
+        <p>{{blog.blog_content|truncatechars:500|linebreaks}} <a href="{% url 'App_blog:blog_details' slug=blog.slug %}">read more</a></p>
+    </div>
+</div>
+<a href="{%url 'App_blog:edit_blog' pk=blog.pk%}">Edit</a>
+
+
+{% endfor %}
+
+{% endblock %}
